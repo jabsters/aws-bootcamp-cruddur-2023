@@ -10,5 +10,5 @@
 * watched Ashish's video on container security
 * watched Andrew's video on Dockerfiles, docker compose, openAI documentation
 * added the notifications api endpoint and the front end link
-  * bug or not, I noticed that ShowActivity shoudl have been ShowActivities, but I haven't tested this. Just an inconsistency.
+  * bug or not, I noticed that ShowActivity should have been ShowActivities, but I haven't tested this. Just an inconsistency.
 * ensured that I was able to install dynamoDB and PostGres
