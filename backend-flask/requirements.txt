@@ -1,3 +1,5 @@
+aws-xray-sdk
+
 flask
 flask-cors
 
