@@ -3,7 +3,7 @@ from datetime import datetime, timedelta, timezone
 
 class UserActivities:
   def run(user_handle):
-      segment = xray_recorder.begin_segment('segment_name')
+      #segment = xray_recorder.begin_segment('segment_name')
 
       model = {
         'errors': None,
@@ -26,12 +26,12 @@ class UserActivities:
         }]
         model['data'] = results
 
-      subsegment = xray_recorder.begin_subsegment('mock-data')
+      #subsegment = xray_recorder.begin_subsegment('mock-data')
 
-      dict = {
-        "now": now.isoformat(),
-        "results-size": len(model['data'])
-      }
-      segment.put_metadata('key', dict, 'namespace')
+      #dict = {
+      #  "now": now.isoformat(),
+      #  "results-size": len(model['data'])
+      #}
+      #segment.put_metadata('key', dict, 'namespace')
 
       return model
