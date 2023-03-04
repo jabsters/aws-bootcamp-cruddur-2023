@@ -1,5 +1,8 @@
 aws-xray-sdk
 
+blinker
+rollbar
+
 flask
 flask-cors
 
