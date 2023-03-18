@@ -11,3 +11,6 @@ export DB_SG_ID="sg-abc"
 gp env DB_SG_ID="sg-abc"
 export DB_SG_RULE_ID="sgr-def"
 gp env DB_SG_RULE_ID="sgr-def"
+
+Lambda layer for US-west-2
+arn:aws:lambda:us-west-2:898466741470:layer:psycopg2-py38:1
