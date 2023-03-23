@@ -18,3 +18,5 @@ psycopg[binary]
 psycopg[pool]
 
 watchtower
+
+boto3
