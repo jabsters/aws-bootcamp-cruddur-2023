@@ -11,8 +11,10 @@ services:
       #OTEL_EXPORTER_OTLP_HEADERS: "x-honeycomb-team=LOLOLOHARDCODEDTOKEN"
       AWS_XRAY_URL: "*4567-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}*"
       AWS_XRAY_DAEMON_ADDRESS: "xray-daemon:2000"
-      AWS_DEFAULT_REGION: "${AWS_DEFAULT_REGION}"
       AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID}"
+      AWS_COGNITO_USER_POOL_ID: "${AWS_COGNITO_USER_POOL_ID}"
+      AWS_DEFAULT_REGION: "${AWS_DEFAULT_REGION}"
+      AWS_ENDPOINT_URL: "http://dynamodb-local:8000"
       AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
       ROLLBAR_ACCESS_TOKEN: "${ROLLBAR_ACCESS_TOKEN}"
     build: ./backend-flask
@@ -25,7 +27,7 @@ services:
       REACT_APP_BACKEND_URL: "https://4567-${GITPOD_WORKSPACE_ID}.${GITPOD_WORKSPACE_CLUSTER_HOST}"
       REACT_APP_AWS_PROJECT_REGION: "${AWS_DEFAULT_REGION}"
       REACT_APP_AWS_COGNITO_REGION: "${AWS_DEFAULT_REGION}"
-      REACT_APP_AWS_USER_POOLS_ID: "us-west-2_RxiV2qlLn"
+      REACT_APP_AWS_USER_POOLS_ID: "${AWS_COGNITO_USER_POOL_ID}"
       REACT_APP_CLIENT_ID: "23f0mvh8opc7ttjjqvt6ialfb1"
     build: ./frontend-react-js
     ports:
@@ -52,18 +54,18 @@ services:
       - '5432:5432'
     volumes: 
       - db:/var/lib/postgresql/data
-  #dynamodb-local:
+  dynamodb-local:
     # https://stackoverflow.com/questions/67533058/persist-local-dynamodb-data-in-volumes-lack-permission-unable-to-open-databa
     # We needed to add user:root to get this working.
-    #user: root
-    #command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ./data"
-    #image: "amazon/dynamodb-local:latest"
-    #container_name: dynamodb-local
-    #ports:
-      #- "8000:8000"
-    #volumes:
-      #- "./docker/dynamodb:/home/dynamodblocal/data"
-    #working_dir: /home/dynamodblocal
+    user: root
+    command: "-jar DynamoDBLocal.jar -sharedDb -dbPath ./data"
+    image: "amazon/dynamodb-local:latest"
+    container_name: dynamodb-local
+    ports:
+      - "8000:8000"
+    volumes:
+      - "./docker/dynamodb:/home/dynamodblocal/data"
+    working_dir: /home/dynamodblocal
 
 # the name flag is a hack to change the default prepend folder
 # name when outputting the image names
