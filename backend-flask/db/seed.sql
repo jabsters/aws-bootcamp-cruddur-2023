@@ -3,7 +3,8 @@ INSERT INTO public.users (display_name, email, handle, cognito_user_id)
 VALUES
   ('Andrew Brown', 'andrew@exampro.co', 'andrewbrown' ,'MOCK'),
   ('Andrew Bayko', 'bayko@exampro.co', 'bayko' ,'MOCK'),
-  ('Londo Mollari','lmollari@centari.com', 'londo', 'MOCK');
+  ('Londo Mollari', 'lmollari@centari.com', 'londo', 'MOCK')
+ON CONFLICT DO NOTHING;
 
 INSERT INTO public.activities (user_uuid, message, expires_at)
 VALUES
@@ -12,3 +13,4 @@ VALUES
     'This was imported as seed data!',
     current_timestamp + interval '10 day'
   )
+ON CONFLICT DO NOTHING;
